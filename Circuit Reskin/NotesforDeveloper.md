@@ -8,3 +8,7 @@ Json file saved in "LocalMachines.json" in application support directory
 Third Party Code
 DBAlertController
 SwiftyJson
+
+Credits
+Lots of Icon from icon8.com
+App Logo from "Image by Clker-Free-Vector-Images from Pixabay"

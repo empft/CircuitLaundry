@@ -32,6 +32,10 @@ class ScanAddMachineViewController: UIViewController, LocationDelegateData, Dele
         }
         
         self.locationRefresh()
+        
+        if #available(iOS 13.0, *) {
+            self.isModalInPresentation = true
+        }
     }
 
     func locationRefresh() {
