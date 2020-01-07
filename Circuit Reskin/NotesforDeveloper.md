@@ -1,5 +1,6 @@
 Userdefaults Keys
-"Laundry" -- stores stringarray of [name, name, name, index, index, index] of location, accommodation and laundry room
+[REMOVED]  "Laundry"--stores stringarray of [name, name, name, index, index, index] of location, accommodation and laundry room
+"Page" -- stores array of stringarray of "Laundry" 
 "Token" -- stores authorization bearer session token
 "Notification" -- Boolean value for whether notification is toggled
 
@@ -12,3 +13,4 @@ SwiftyJson
 Credits
 Lots of Icon from icon8.com
 App Logo from "Image by Clker-Free-Vector-Images from Pixabay"
+

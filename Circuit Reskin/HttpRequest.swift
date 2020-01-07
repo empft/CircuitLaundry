@@ -393,7 +393,7 @@ struct ApiWithSession {
     
     func getMachineInfo(of machine: String, completion: @escaping(_  available: Bool, _ time: TimeInterval?) -> Void) {
         let connect = "/API/User/GetMachineInfo/?MachineId=" + machine
-        let url = URL(string: base + connect)!
+        guard let url = URL(string: base + connect) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")

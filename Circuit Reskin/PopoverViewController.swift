@@ -122,7 +122,6 @@ class PopoverViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         let toolBar = UIToolbar()
         toolBar.barStyle = .default
         toolBar.isTranslucent = true
-        toolBar.tintColor = UIColor(red: 92/255, green: 216/255, blue: 255/255, alpha: 1)
         toolBar.sizeToFit()
         
         // Adding Button ToolBar
@@ -170,12 +169,19 @@ class PopoverViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             let num3 = String(laundryroomlist.firstIndex(of: text3)!)
             let array = [text1,text2,text3,num1,num2,num3]
             if send == -1 {
-                UserDefaults.standard.set(array, forKey: "Laundry")
-                delegaterefresh?.locationRefresh()
-                
+                print("Shouldnt Happen, Error segue to Popover")
             } else if send == 0 {
                 delegatelocation?.passLocation(array)
                 delegatelocation?.locationRefresh()
+            } else if send == 1 {
+                var newarray:[[String]] = []
+                if let exist = UserDefaults.standard.object(forKey: "Page") as? [[String]] {
+                    newarray = exist + [array]
+                } else {
+                    newarray = [array]
+                }
+                UserDefaults.standard.set(newarray, forKey: "Page")
+                delegaterefresh?.locationRefresh()
             }
             dismiss(animated:true , completion: nil)
         } else {

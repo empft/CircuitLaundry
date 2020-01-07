@@ -85,6 +85,14 @@ class ManageFile {
             }
         }
     }
+    
+    func deleteEverything() {
+        do {
+            try FileManager.default.removeItem(at: fileurl)
+        } catch (let error){
+            print(error)
+        }
+    }
 }
 
 

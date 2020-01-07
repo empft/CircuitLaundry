@@ -1,33 +1,35 @@
 import UIKit
 
-class AvailabilityViewController: UIViewController, RefreshDelegate {
+class AvailabilityViewController: UIViewController, UIScrollViewDelegate, RefreshDelegate {
 
-    @IBOutlet weak var locationLabel: UIButton!
+    @IBOutlet weak var scrollingView: UIScrollView!
+    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var contentView: UIView!
+    
+    var refcgrect: CGRect!
     var timer: Timer?
     var api: ApiWithSession!
+    var pagearray: [[String]] = []
+    var currentstringarray: [String]? = nil
+    var pagecount: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        refcgrect = contentView.frame
         locationRefresh()
         let tabbar = self.tabBarController as! TabBarViewController
         api = tabbar.tabbarapi
         
         NotificationCenter.default.addObserver(self, selector: #selector(AvailabilityViewController.viewDidAppear), name: UIApplication.willEnterForegroundNotification, object: nil)
-
         
-        let options = NSKeyValueObservingOptions([.new, .old, .initial, .prior])
-        self.locationLabel.addObserver(self, forKeyPath: "titleLabel.text", options: options, context: nil)
+        view.addGestureRecognizer(scrollingView.panGestureRecognizer)
+        scrollingView.delegate = self
         
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        locationRefresh()
-    }
-
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -40,18 +42,63 @@ class AvailabilityViewController: UIViewController, RefreshDelegate {
         self.stopTimer()
     }
     
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let number = round(scrollView.contentOffset.x / scrollView.frame.size.width)
+        pagecount = Int(number)
+        
+        self.locationRefresh()
+    }
+    
+     func pageInitialize() {
+             
+             func setLocationNull() {
+                 let label = UILabel()
+                 label.text = "No Location"
+                 label.frame = CGRect(x: 0, y: 0, width: refcgrect.width, height: refcgrect.height)
+                 label.textAlignment = .center
+                 label.adjustsFontSizeToFitWidth = true
+                 contentView.addSubview(label)
+             }
+             
+             scrollingView.subviews.forEach({ ($0 as? UILabel)?.removeFromSuperview() })
+             if let page = UserDefaults.standard.array(forKey: "Page") as? [[String]] {
+                 pagearray = page
+                 
+                 if pagearray != [] {
+                     let refframe = CGRect(x: 0, y: 0, width: refcgrect.width, height: refcgrect.height)
+                     for (index, arr) in page.enumerated() {
+                         
+                         let dx = refframe.width*CGFloat(index)
+                         let frame = refframe.offsetBy(dx: dx, dy: 0)
+                         let label = UILabel(frame: frame)
+                         label.text = arr[2]
+                         label.textAlignment = .center
+                         label.adjustsFontSizeToFitWidth = true
+                         contentView.addSubview(label)
+             
+                     }
+                 } else {
+                     setLocationNull()
+                 }
+             } else {
+                 setLocationNull()
+             }
+
+         }
+
+      
+        
     func locationRefresh() {
-        if let loc = UserDefaults.standard.stringArray(forKey: "Laundry") {
-            let text = NSMutableAttributedString(string: loc[2])
-            let attrs = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.patternDot.rawValue | NSUnderlineStyle.single.rawValue]
-            text.addAttributes(attrs, range: NSRange(location: 0, length: text.length))
-            locationLabel.setAttributedTitle(text, for: .normal)
+        pageInitialize()
+        pageControl.numberOfPages = pagearray.count
+        pageControl.currentPage = pagecount
+             
+        if pagearray == [] {
+            currentstringarray = nil
         } else {
-            let text = NSMutableAttributedString(string: "Location")
-            let attrs = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.patternDot.rawValue | NSUnderlineStyle.single.rawValue]
-            text.addAttributes(attrs, range: NSRange(location: 0, length: text.length))
-            locationLabel.setAttributedTitle(text, for: .normal)
+            currentstringarray = pagearray[pagecount]
         }
+             
         self.refresh()
     }
     
@@ -103,8 +150,10 @@ class AvailabilityViewController: UIViewController, RefreshDelegate {
         } else if segue.identifier == "scanaddsegue1" {
             let vc = segue.destination as! ScanAddMachineViewController
             vc.unifiedjson = tabbarvc.unifiedjson
-        } else if segue.identifier == "popoversegue1" {
+            vc.pagecount = self.pagecount
+        } else if segue.identifier == "quickaccess1" {
             let vc = segue.destination as! PopoverViewController
+            vc.send = 1
             vc.delegaterefresh = self
         }
     }
@@ -117,4 +166,26 @@ class AvailabilityViewController: UIViewController, RefreshDelegate {
             }
         }
     }
+    
+    @IBAction func plusAction(_ sender: Any) {
+        let actionmenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let firstchoice = UIAlertAction(title: "Save Machine Number", style: .default, handler: { action in
+               if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "scanaddvc") as?   ScanAddMachineViewController {
+                    vc.delegate = self
+                    let tabbarvc = self.tabBarController as! TabBarViewController
+                    vc.unifiedjson = tabbarvc.unifiedjson
+                    vc.pagecount = self.pagecount
+                    self.present(vc, animated: true, completion: nil)
+                }
+        })
+        let secondchoice = UIAlertAction(title: "Add Laundry Room", style: .default, handler: { action in
+            self.performSegue(withIdentifier: "quickaccess1", sender: nil)
+        })
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        actionmenu.addAction(firstchoice)
+        actionmenu.addAction(secondchoice)
+        actionmenu.addAction(cancel)
+        self.present(actionmenu, animated: true, completion: nil)
+    }
+    
 }

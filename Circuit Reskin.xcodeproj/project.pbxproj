@@ -33,6 +33,7 @@
 		3F95E20323AA7CC900BB22E9 /* JsonFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95E20223AA7CC900BB22E9 /* JsonFileManager.swift */; };
 		3FA399EF239742C4000E5B3B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA399EE239742C4000E5B3B /* RegisterViewController.swift */; };
 		3FC5DDD423B04B1100E3C102 /* UnifiedJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC5DDD323B04B1100E3C102 /* UnifiedJson.swift */; };
+		AD8E8BF523C2F07B00F7CF40 /* ClearDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8E8BF423C2F07B00F7CF40 /* ClearDataTableViewController.swift */; };
 		ADDEE58623BDFD86001267E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDEE58523BDFD86001267E1 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -83,9 +84,10 @@
 		3F95E20223AA7CC900BB22E9 /* JsonFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonFileManager.swift; sourceTree = "<group>"; };
 		3FA399EE239742C4000E5B3B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		3FC5DDD323B04B1100E3C102 /* UnifiedJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedJson.swift; sourceTree = "<group>"; };
+		AD8E8BF423C2F07B00F7CF40 /* ClearDataTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearDataTableViewController.swift; sourceTree = "<group>"; };
 		ADD29B6623BE55CB0078DC60 /* Circuit Reskin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Circuit Reskin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		ADD29B6723BE55CB0078DC60 /* Circuit ReskinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Circuit ReskinTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		ADD29B6823BE55CB0078DC60 /* Circuit ReskinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Circuit ReskinUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADD29B6723BE55CB0078DC60 /* Circuit ReskinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Circuit ReskinTests.xctest"; path = "/Users/catalina/Desktop/Circuit Reskin/build/Debug-iphoneos/Circuit ReskinTests.xctest"; sourceTree = "<absolute>"; };
+		ADD29B6823BE55CB0078DC60 /* Circuit ReskinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Circuit ReskinUITests.xctest"; path = "/Users/catalina/Desktop/Circuit Reskin/build/Debug-iphoneos/Circuit ReskinUITests.xctest"; sourceTree = "<absolute>"; };
 		ADDEE58523BDFD86001267E1 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,14 +123,13 @@
 				3F0365902389D46B00C4E71D /* Circuit ReskinTests */,
 				3F03659B2389D46B00C4E71D /* Circuit ReskinUITests */,
 				ADD29B6623BE55CB0078DC60 /* Circuit Reskin.app */,
-				ADD29B6723BE55CB0078DC60 /* Circuit ReskinTests.xctest */,
-				ADD29B6823BE55CB0078DC60 /* Circuit ReskinUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
 		3F03657B2389D45A00C4E71D /* Circuit Reskin */ = {
 			isa = PBXGroup;
 			children = (
+				AD8E8BF423C2F07B00F7CF40 /* ClearDataTableViewController.swift */,
 				3F51E6E023A93D6900FF2497 /* NotificationViewController.swift */,
 				3F95E20023AA7B8600BB22E9 /* NotesforDeveloper.md */,
 				3F95E20223AA7CC900BB22E9 /* JsonFileManager.swift */,
@@ -315,6 +316,7 @@
 				3F03657F2389D45A00C4E71D /* LoginViewController.swift in Sources */,
 				3F51E6E123A93D6900FF2497 /* NotificationViewController.swift in Sources */,
 				3F43A74723A527360018FB45 /* PopoverViewController.swift in Sources */,
+				AD8E8BF523C2F07B00F7CF40 /* ClearDataTableViewController.swift in Sources */,
 				3F33893E23A7EC7B00E9F013 /* MenuViewController.swift in Sources */,
 				3F408C4323A2FA0C007B601D /* AvailabilityViewController.swift in Sources */,
 				3F53FA6023B2D78300F7F4CA /* InstructionViewController.swift in Sources */,

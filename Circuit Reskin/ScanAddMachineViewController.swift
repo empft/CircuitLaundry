@@ -7,7 +7,7 @@ class MachinesTableViewCell: UITableViewCell {
     
 }
 
-class ScanAddMachineViewController: UIViewController, LocationDelegateData, DelegateData, UITableViewDelegate, UITableViewDataSource {
+class ScanAddMachineViewController: UIViewController, LocationDelegateData, DelegateData, RefreshDelegate, UITableViewDelegate, UITableViewDataSource {
  
     @IBOutlet weak var machineTableView: UITableView!
     @IBOutlet weak var locationLabel: UIButton!
@@ -19,6 +19,8 @@ class ScanAddMachineViewController: UIViewController, LocationDelegateData, Dele
     }
     var editwhichcode: Int? = nil
     var unifiedjson: UnifiedJson!
+    var pagecount: Int = 0
+    weak var delegate: RefreshDelegate? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +28,13 @@ class ScanAddMachineViewController: UIViewController, LocationDelegateData, Dele
         machineTableView.delegate = self
         machineTableView.dataSource = self
         
-        if let array = UserDefaults.standard.stringArray(forKey: "Laundry") {
-            stringarray = array
+        if let array = UserDefaults.standard.object(forKey: "Page") as? [[String]]{
             
+            if array == [] {
+                stringarray = []
+            } else {
+                stringarray = array[pagecount]
+            }
         }
         
         self.locationRefresh()
@@ -56,6 +62,8 @@ class ScanAddMachineViewController: UIViewController, LocationDelegateData, Dele
         if let json = createJsonFromArray() {
             let manager = ManageFile()
             manager.saveToFile(input: json)
+            unifiedjson.updateJsonValue()
+            delegate?.locationRefresh()
             dismiss(animated: true, completion: nil)
         } else {
             print("Cannot convert Json to be saved")
@@ -107,7 +115,11 @@ class ScanAddMachineViewController: UIViewController, LocationDelegateData, Dele
             } else {
                 dryercelldata[index-count].code = machine
             }
+            let path = IndexPath(row: index, section: 0)
+            self.machineTableView.reloadRows(at: [path], with: .none)
+            
         }
+        
     }
     
     //MARK: TableViewDelegate & Data
@@ -138,7 +150,10 @@ class ScanAddMachineViewController: UIViewController, LocationDelegateData, Dele
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         editwhichcode = indexPath.row
-        let modalvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRScanner")
-        self.present(modalvc, animated: true, completion: nil)
+        if let modalvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRScanner") as? QRScannerViewController {
+            modalvc.delegate = self
+            self.present(modalvc, animated: true, completion: nil)
+        }
+            
     }
 }

@@ -6,6 +6,7 @@ class MachineCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var timeleftLabel: UILabel!
     var countdown: Int? = nil
     
+    
     override func prepareForReuse() {
         machineLabel.text = nil
         timeleftLabel.text = nil
@@ -29,9 +30,22 @@ class MachinesCollectionViewController: UICollectionViewController {
     }
     
     func ifLocationChanged() {
-        if let stringarray = UserDefaults.standard.stringArray(forKey: "Laundry"){
-            (washercelldata, dryercelldata) = unifiedjson.machineData(stringarray: stringarray)
+        if let parent = self.parent as? MachinesViewController {
+            if let stringarray = parent.currentstringarray {
+                (washercelldata, dryercelldata) = unifiedjson.machineData(stringarray: stringarray)
+            } else {
+                washercelldata = []
+                dryercelldata = []
+            }
+        } else if let parent = self.parent as? AvailabilityViewController {
+           if let stringarray = parent.currentstringarray {
+               (washercelldata, dryercelldata) = unifiedjson.machineData(stringarray: stringarray)
+           } else {
+               washercelldata = []
+               dryercelldata = []
+           }
         }
+        
         self.collectionView.reloadData()
     }
     
@@ -118,7 +132,7 @@ class MachinesCollectionViewController: UICollectionViewController {
         if send == 0 || send == 1 {
             let number = send == 0 ? washercelldata[indexPath.item].number : dryercelldata[indexPath.item].number
             let code = send == 0 ? washercelldata[indexPath.item].code :  dryercelldata[indexPath.item].code
-            if let parent = self.parent as? MachinesViewController{
+            if let parent = self.parent as? MachinesViewController {
                 parent.useAlert(for: (number: number , code: code))
             }
         }

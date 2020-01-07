@@ -35,6 +35,7 @@ class UnifiedJson {
     }
     
     func machineData(stringarray: [String]) -> (washer: [(number: Int, code: String?)], dryer: [(number: Int, code: String?)]) {
+        
         let cfg = stringarray
         var washercelldata: [(number: Int, code: String?)] = []
         var dryercelldata: [(number: Int, code: String?)] = []
