@@ -60,10 +60,13 @@ class AvailabilityViewController: UIViewController, UIScrollViewDelegate, Refres
                  contentView.addSubview(label)
              }
              
-             scrollingView.subviews.forEach({ ($0 as? UILabel)?.removeFromSuperview() })
+             contentView.subviews.forEach({ ($0 as? UILabel)?.removeFromSuperview() })
              if let page = UserDefaults.standard.array(forKey: "Page") as? [[String]] {
                  pagearray = page
                  
+                let width = refcgrect.width*CGFloat(pagearray.count)
+                let height = refcgrect.height
+                scrollingView.contentSize = CGSize(width: width, height: height)
                  if pagearray != [] {
                      let refframe = CGRect(x: 0, y: 0, width: refcgrect.width, height: refcgrect.height)
                      for (index, arr) in page.enumerated() {
