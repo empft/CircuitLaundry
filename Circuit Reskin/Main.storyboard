@@ -246,14 +246,14 @@
                                 <rect key="frame" x="0.0" y="106" width="375" height="541"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="editmachinecell" id="8sL-x2-bTp" customClass="MachinesTableViewCell" customModule="Circuit_Reskin" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="55.5" width="345" height="45"/>
+                                        <rect key="frame" x="15" y="55.5" width="345" height="44.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8sL-x2-bTp" id="rgx-vr-BJe">
-                                            <rect key="frame" x="0.0" y="0.0" width="345" height="45"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="44.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Machines" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="olQ-E5-1Bh">
-                                                    <rect key="frame" x="15" y="9" width="101" height="21.5"/>
+                                                    <rect key="frame" x="15" y="9" width="101" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="101" id="Ovf-da-Wxw"/>
                                                     </constraints>
@@ -262,7 +262,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00000000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rbh-9t-Smb">
-                                                    <rect key="frame" x="230" y="10" width="100" height="22"/>
+                                                    <rect key="frame" x="230" y="10" width="100" height="21.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="n48-YP-noX"/>
                                                     </constraints>
@@ -271,7 +271,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Code: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Da9-b6-pyh">
-                                                    <rect key="frame" x="172" y="10" width="50" height="22"/>
+                                                    <rect key="frame" x="172" y="10" width="50" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -665,15 +665,15 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="291" id="9Wj-GS-fGa"/>
                                 </constraints>
-                                <string key="text">Most of the machine numbers are not stored in the app. You need to add them yourself.  - Use machine directly by tapping the "QR" icon  - Add machine number by tapping the '+' icon   - Help to complete an unofficial repository of machine numbers by uploading them in "Feedback &amp; Support"</string>
+                                <mutableString key="text">Most of the machine numbers are not stored in the app. You need to add them yourself.  - Use machine directly by tapping the "QR" icon  - Add machine number or add new location by tapping the '+' icon   - Help to complete an unofficial repository of machine numbers by uploading them in "Feedback &amp; Support"</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Readme" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMp-oZ-5NA">
                                 <rect key="frame" x="151.5" y="56" width="72" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHb-O0-n4L">
@@ -687,7 +687,6 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.59437433727484923" green="0.048276919638463811" blue="0.92133218050003052" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="OYo-CY-d7g" firstAttribute="top" secondItem="qMp-oZ-5NA" secondAttribute="bottom" constant="42" id="11W-iz-u2E"/>
                             <constraint firstItem="0lZ-Mn-Fxe" firstAttribute="bottom" secondItem="DHb-O0-n4L" secondAttribute="bottom" constant="20" id="Lt1-jV-VGo"/>
