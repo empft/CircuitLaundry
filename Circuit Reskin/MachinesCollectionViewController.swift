@@ -82,14 +82,14 @@ class MachinesCollectionViewController: UICollectionViewController {
             let name = "Washer " + String(washercelldata[indexPath.item].number)
             let code = washercelldata[indexPath.item].code
             if send == 0 {
-                setLabel(name, UIColor.red)
+                setLabel(name, UIColor.blue)
             } else {
                 if let code = code {
                     let parent = self.parent as! AvailabilityViewController
                         parent.api.getMachineInfo(of: code, completion: { available, time in
                             DispatchQueue.main.async {
                                 if available {
-                                    setLabel(name, UIColor.red)
+                                    setLabel(name, UIColor.blue)
                                 } else {
                                     setLabel(name, UIColor.gray)
                                     createCountdown(time)
@@ -105,14 +105,14 @@ class MachinesCollectionViewController: UICollectionViewController {
             let name = "Dryer " + String(dryercelldata[indexPath.item].number)
             let code = dryercelldata[indexPath.item].code
             if send == 1 {
-                setLabel(name, UIColor.blue)
+                setLabel(name, UIColor.red)
             } else {
                 if let code = code {
                     let parent = self.parent as! AvailabilityViewController
                     parent.api.getMachineInfo(of: code, completion: { available, time in
                         DispatchQueue.main.async {
                             if available {
-                                setLabel(name, UIColor.blue)
+                                setLabel(name, UIColor.red)
                             } else {
                                 setLabel(name, UIColor.gray)
                                 createCountdown(time)
