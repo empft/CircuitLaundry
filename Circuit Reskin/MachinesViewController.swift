@@ -1,7 +1,7 @@
 import UIKit
 import UserNotifications
 
-class MachinesViewController: UIViewController, UIScrollViewDelegate ,DelegateData , RefreshDelegate {
+class MachinesViewController: UIViewController, UIScrollViewDelegate ,UNUserNotificationCenterDelegate , DelegateData , RefreshDelegate {
     
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var scrollingView: UIScrollView!
@@ -14,12 +14,15 @@ class MachinesViewController: UIViewController, UIScrollViewDelegate ,DelegateDa
     var pagearray: [[String]] = []
     var currentstringarray: [String]? = nil
     var pagecount: Int = 0
+    let center = UNUserNotificationCenter.current()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         refcgrect = contentView.frame
         let tabbar = self.tabBarController as! TabBarViewController
         api = tabbar.tabbarapi
+        
+        center.delegate = self
         
         view.addGestureRecognizer(scrollingView.panGestureRecognizer)
         scrollingView.delegate = self
@@ -132,17 +135,24 @@ class MachinesViewController: UIViewController, UIScrollViewDelegate ,DelegateDa
         return content
     }
     
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound])
+    }
+    
     func usemachine(machine: String) {
         api.useMachine(of: machine, completion: { time in
             if UserDefaults.standard.bool(forKey: "Notification") == true {
-                let center = UNUserNotificationCenter.current()
-                center.getNotificationSettings(completionHandler: {settings in
+                self.center.getNotificationSettings(completionHandler: {settings in
                     guard settings.authorizationStatus == .authorized else {return}
                     if settings.alertSetting == .enabled {
                         if let time = time {
                             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: time, repeats: false)
                             let request = UNNotificationRequest(identifier: "Laundry", content: self.scheduleNotification(), trigger: trigger)
-                            center.add(request, withCompletionHandler: { (error) in
+                            self.center.add(request, withCompletionHandler: { (error) in
                             if let error = error {
                                 print(error)
                             }
@@ -219,5 +229,5 @@ class MachinesViewController: UIViewController, UIScrollViewDelegate ,DelegateDa
         actionmenu.addAction(cancel)
         self.present(actionmenu, animated: true, completion: nil)
     }
-    
+
 }

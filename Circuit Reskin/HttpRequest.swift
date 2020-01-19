@@ -430,7 +430,6 @@ struct ApiWithSession {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-    
         
         let task = session.dataTask(with: request, { result in
             DispatchQueue.main.async {
@@ -443,11 +442,16 @@ struct ApiWithSession {
                             if failure != "" {
                                 self.alert(failure)
                             }
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 7.0) {
+                            var backgroundTaskID: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier(rawValue: 0)
+                            backgroundTaskID = UIApplication.shared.beginBackgroundTask(expirationHandler: {
+                                UIApplication.shared.endBackgroundTask(backgroundTaskID)
+                            })
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 15.0) {
                                 self.getMachineInfo(of: machine, completion: { available, time in
                                     if available == false && time != nil {
                                         completion(time)
-                                    }
+                                        UIApplication.shared.endBackgroundTask(backgroundTaskID)
+                                    } 
                                 })
                             }
                         } else {

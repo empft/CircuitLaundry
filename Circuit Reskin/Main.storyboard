@@ -246,14 +246,14 @@
                                 <rect key="frame" x="0.0" y="106" width="375" height="541"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="editmachinecell" id="8sL-x2-bTp" customClass="MachinesTableViewCell" customModule="Circuit_Reskin" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="55.5" width="345" height="44.5"/>
+                                        <rect key="frame" x="15" y="55.5" width="345" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8sL-x2-bTp" id="rgx-vr-BJe">
-                                            <rect key="frame" x="0.0" y="0.0" width="345" height="44.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Machines" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="olQ-E5-1Bh">
-                                                    <rect key="frame" x="15" y="9" width="101" height="21"/>
+                                                    <rect key="frame" x="15" y="9" width="101" height="21.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="101" id="Ovf-da-Wxw"/>
                                                     </constraints>
@@ -262,7 +262,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00000000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rbh-9t-Smb">
-                                                    <rect key="frame" x="230" y="10" width="100" height="21.5"/>
+                                                    <rect key="frame" x="230" y="10" width="100" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="n48-YP-noX"/>
                                                     </constraints>
@@ -271,7 +271,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Code: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Da9-b6-pyh">
-                                                    <rect key="frame" x="172" y="10" width="50" height="21.5"/>
+                                                    <rect key="frame" x="172" y="10" width="50" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -457,7 +457,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1BB-iS-FjH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1269.5652173913045" y="-405.13392857142856"/>
+            <point key="canvasLocation" x="1268" y="-405.24737631184411"/>
         </scene>
         <!--Machines Collection View Controller-->
         <scene sceneID="cxH-6M-Gyw">
@@ -665,7 +665,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="291" id="9Wj-GS-fGa"/>
                                 </constraints>
-                                <mutableString key="text">Most of the machine numbers are not stored in the app. You need to add them yourself.  - Use machine directly by tapping the "QR" icon  - Add machine number or add new location by tapping the '+' icon   - Help to complete an unofficial repository of machine numbers by uploading them in "Feedback &amp; Support"</mutableString>
+                                <string key="text">Most of the machine numbers are not stored in the app. You need to add them yourself.  - Use machine directly by tapping the "QR" icon  - Add machine number or add new location by tapping the '+' icon   - Help to complete an unofficial repository of machine numbers by uploading them in "Feedback &amp; Support"</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
