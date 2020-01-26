@@ -150,13 +150,18 @@ class MachinesViewController: UIViewController, UIScrollViewDelegate ,UNUserNoti
                     guard settings.authorizationStatus == .authorized else {return}
                     if settings.alertSetting == .enabled {
                         if let time = time {
-                            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: time, repeats: false)
+                            let advance = UserDefaults.standard.double(forKey: "Time")
+                            let timebefore = time - advance*60
+                            guard timebefore > 0 else { return }
+                            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timebefore, repeats: false)
                             let request = UNNotificationRequest(identifier: "Laundry", content: self.scheduleNotification(), trigger: trigger)
                             self.center.add(request, withCompletionHandler: { (error) in
                             if let error = error {
                                 print(error)
                             }
                             })
+                            
+                            
                         }
                     }
                     

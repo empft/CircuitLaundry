@@ -3,6 +3,7 @@ Userdefaults Keys
 "Page" -- stores array of stringarray of "Laundry" 
 "Token" -- stores authorization bearer session token
 "Notification" -- Boolean value for whether notification is toggled
+"Time" -- Double value for minute the notification should be sent before machine is done
 
 Json file saved in "LocalMachines.json" in application support directory
 
